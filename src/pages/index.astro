@@ -22,12 +22,13 @@ import ExternalLink from "../components/ExternalLink.astro";
       <br />
       Here's a picture of a cute cat though.
     </p>
-    <div class="h-96 pt-12">
+    <div class="max-w-96 pt-12">
       <Image
-        class="h-full w-auto rounded-lg"
+        class="rounded-lg"
         src={catImage}
         alt="An orange cat staring at the viewer"
         loading="eager"
+        layout="constrained"
       />
     </div>
   </Container>
