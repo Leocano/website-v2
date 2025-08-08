@@ -1,8 +1,10 @@
 ---
 import "../styles/global.css";
+import { Font } from "astro:assets";
 ---
 
-<!doctype html>
+<Font cssVariable="--font-poppins" preload />
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +13,8 @@ import "../styles/global.css";
     <title>Leonardo Cano - Software Engineer</title>
   </head>
   <body>
-    <slot />
+    <div class="h-auto min-h-screen w-full bg-zinc-900">
+      <slot />
+    </div>
   </body>
 </html>

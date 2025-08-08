@@ -1,7 +1,34 @@
 ---
+import { Image } from "astro:assets";
+import catImage from "../assets/cat.webp";
+
 import Main from "../layouts/Main.astro";
+import Container from "../components/Container.astro";
+import ExternalLink from "../components/ExternalLink.astro";
 ---
 
 <Main>
-  <div>Hello!</div>
+  <Container>
+    <h1 class="font-sans text-5xl font-bold text-fuchsia-100">Leonardo Cano</h1>
+    <h2 class="pt-4 font-sans text-2xl text-fuchsia-100">Software Engineer</h2>
+    <p class="pt-6 text-xl/8 text-gray-100">
+      Hey! I'm Leo. I like building things on the web and a whole other stuff.
+      <br />
+      I'm still building this website, but you can check my
+      <ExternalLink to="https://www.linkedin.com/in/leonardo-cano/"
+        >Linkedin</ExternalLink
+      > and <ExternalLink to="https://github.com/Leocano">Github</ExternalLink> if
+      you're curious.
+      <br />
+      Here's a picture of a cute cat though.
+    </p>
+    <div class="h-96 pt-12">
+      <Image
+        class="h-full w-auto rounded-lg"
+        src={catImage}
+        alt="An orange cat staring at the viewer"
+        loading="eager"
+      />
+    </div>
+  </Container>
 </Main>
