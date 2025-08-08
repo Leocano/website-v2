@@ -5,31 +5,44 @@ import catImage from "../assets/cat.webp";
 import Main from "../layouts/Main.astro";
 import Container from "../components/Container.astro";
 import ExternalLink from "../components/ExternalLink.astro";
+import GithubIcon from "../components/icons/Github.astro";
+import LinkedinIcon from "../components/icons/Linkedin.astro";
 ---
 
 <Main>
   <Container>
     <h1 class="font-sans text-5xl font-bold text-fuchsia-100">Leonardo Cano</h1>
     <h2 class="pt-4 font-sans text-2xl text-fuchsia-100">Software Engineer</h2>
-    <p class="pt-6 text-xl/8 text-gray-100">
+    <div class="flex gap-4 pt-4">
+      <div class="w-8">
+        <ExternalLink to="https://github.com/Leocano"
+          ><GithubIcon /></ExternalLink
+        >
+      </div>
+      <div class="w-8">
+        <ExternalLink to="https://www.linkedin.com/in/leonardo-cano/"
+          ><LinkedinIcon /></ExternalLink
+        >
+      </div>
+    </div>
+    <p class="pt-12 text-xl/9 text-gray-100">
       Hey! I'm Leo. I like building things on the web and a whole other stuff.
       <br />
-      I'm still building this website, but you can check my
-      <ExternalLink to="https://www.linkedin.com/in/leonardo-cano/"
-        >Linkedin</ExternalLink
-      > and <ExternalLink to="https://github.com/Leocano">Github</ExternalLink> if
-      you're curious.
+      I'm currently a Tech Lead (and developer) at <ExternalLink
+        to="https://www.pipefy.com/">Pipefy</ExternalLink
+      >.
       <br />
-      Here's a picture of a cute cat though.
+      I'm still building this website, so there isn't much stuff (YET!). Here's a
+      picture of a cute cat to make up for it though.
+      <div class="max-w-96 pt-12">
+        <Image
+          class="rounded-lg"
+          src={catImage}
+          alt="An orange cat staring at the viewer"
+          loading="eager"
+          layout="constrained"
+        />
+      </div>
     </p>
-    <div class="max-w-96 pt-12">
-      <Image
-        class="rounded-lg"
-        src={catImage}
-        alt="An orange cat staring at the viewer"
-        loading="eager"
-        layout="constrained"
-      />
-    </div>
   </Container>
 </Main>
