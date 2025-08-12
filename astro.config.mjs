@@ -13,8 +13,8 @@ export default defineConfig({
     fonts: [
       {
         provider: fontProviders.fontsource(),
-        name: "Poppins",
-        cssVariable: "--font-poppins",
+        name: "Outfit",
+        cssVariable: "--font-outfit",
         weights: [400, 700],
         styles: ["normal"],
       },

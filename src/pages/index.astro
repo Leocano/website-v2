@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import catImage from "../assets/cat.webp";
+import me from "../assets/me.webp";
 
 import Main from "../layouts/Main.astro";
 import Container from "../components/Container.astro";
@@ -11,9 +11,30 @@ import LinkedinIcon from "../components/icons/Linkedin.astro";
 
 <Main>
   <Container>
-    <h1 class="font-sans text-5xl font-bold text-fuchsia-100">Leonardo Cano</h1>
-    <h2 class="pt-4 font-sans text-2xl text-fuchsia-100">Software Engineer</h2>
-    <div class="flex gap-4 pt-4">
+    <Image
+      class="h-[400px] rounded-lg object-cover object-[60%_40%]"
+      src={me}
+      alt="A portrait of me."
+      loading="eager"
+      layout="constrained"
+    />
+    <h1 class="pt-12 font-sans text-2xl font-bold text-orange-300">
+      Hi! I'm Leo.
+    </h1>
+    <p class="pt-8 text-lg text-gray-300">
+      I like building things on the web and a whole other stuff.
+    </p>
+    <p class="pt-8 text-lg text-gray-300">
+      I'm currently a Tech Lead (and developer) at <ExternalLink
+        to="https://www.pipefy.com/">Pipefy</ExternalLink
+      >, driving the Request XP squad towards its goals.
+    </p>
+    <p class="pt-8 text-lg text-gray-300">
+      You can find me (sometimes) on <ExternalLink
+        to="https://www.linkedin.com/in/leonardo-cano/">Linkedin</ExternalLink
+      > and <ExternalLink to="https://github.com/Leocano">Github</ExternalLink>.
+    </p>
+    <div class="flex gap-2 pt-12">
       <div class="w-8">
         <ExternalLink to="https://github.com/Leocano"
           ><GithubIcon /></ExternalLink
@@ -24,25 +45,9 @@ import LinkedinIcon from "../components/icons/Linkedin.astro";
           ><LinkedinIcon /></ExternalLink
         >
       </div>
+      <span class="ml-auto inline-flex items-end text-sm text-gray-500"
+        >Updated Aug 2025</span
+      >
     </div>
-    <p class="pt-12 text-xl/9 text-gray-100">
-      Hey! I'm Leo. I like building things on the web and a whole other stuff.
-      <br />
-      I'm currently a Tech Lead (and developer) at <ExternalLink
-        to="https://www.pipefy.com/">Pipefy</ExternalLink
-      >.
-      <br />
-      I'm still building this website, so there isn't much stuff (YET!). Here's a
-      picture of a cute cat to make up for it though.
-      <div class="max-w-96 pt-12">
-        <Image
-          class="rounded-lg"
-          src={catImage}
-          alt="An orange cat staring at the viewer"
-          loading="eager"
-          layout="constrained"
-        />
-      </div>
-    </p>
   </Container>
 </Main>
