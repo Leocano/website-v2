@@ -4,4 +4,11 @@
   const initialState = setup();
 </script>
 
-<div></div>
+<div>
+  {#each initialState as row}
+    {#each row as a}
+      <span> | {a.content} | </span>
+    {/each}
+    <br />
+  {/each}
+</div>
