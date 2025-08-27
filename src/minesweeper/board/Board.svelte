@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { setup } from "./setup";
-
-  const initialState = setup();
+  import { boardState } from "./boardState.svelte";
+  import Cell from "../Cell.svelte";
 </script>
 
-<div>
-  {#each initialState as row}
-    {#each row as a}
-      <span> | {a.content} | </span>
+<div class="grid grid-cols-9 gap-2">
+  {#each boardState as row, i}
+    {#each row as cell, j}
+      <Cell {...cell} row={i} col={j} />
     {/each}
-    <br />
   {/each}
 </div>

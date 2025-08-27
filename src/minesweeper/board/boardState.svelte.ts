@@ -26,3 +26,5 @@ export const setup = (): Cell[][] => {
 
   return board;
 };
+
+export const boardState = $state(setup());
