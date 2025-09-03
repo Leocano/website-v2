@@ -8,20 +8,45 @@ export const setup = (): Cell[][] => {
       (): Cell => ({
         content: "empty",
         status: "initial",
+        bombsAround: 0,
       }),
     ),
   );
 
+  const directions = [
+    [0, 1], // right
+    [0, -1], // left
+    [1, 0], // down
+    [1, 1], // down-right
+    [1, -1], // down-left
+    [-1, 0], // up
+    [-1, 1], // up-right
+    [-1, -1], // up-left
+  ];
+
+  const fillBombCount = (row: number, col: number) => {
+    if (row < 0 || row >= BOARD_SIZE[0] || col < 0 || col >= BOARD_SIZE[1]) {
+      return;
+    }
+
+    board[row][col].bombsAround++;
+  };
+
   for (let i = 0; i < MINE_AMOUNT; i++) {
     const randomRow = Math.floor(Math.random() * BOARD_SIZE[0]);
     const randomCol = Math.floor(Math.random() * BOARD_SIZE[1]);
+    const cell = board[randomRow][randomCol];
 
-    if (board[randomRow][randomCol].content === "mine") {
+    if (cell.content === "mine") {
       i--;
       continue;
     }
 
-    board[randomRow][randomCol].content = "mine";
+    cell.content = "mine";
+
+    for (const [rowOffset, colOffset] of directions) {
+      fillBombCount(randomRow + rowOffset, randomCol + colOffset);
+    }
   }
 
   return board;

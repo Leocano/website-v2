@@ -11,15 +11,24 @@
     boardState[row][col].status = "clicked";
   }
 
-  const { content, status, row, col }: Props = $props();
+  const { content, status, row, col, bombsAround }: Props = $props();
 </script>
 
 <button
   type="button"
-  class="h-16 w-16 bg-red-200 border-2"
+  class={[
+    "h-16",
+    "w-16",
+    content === "mine" ? "bg-red-200" : "bg-blue-200",
+    "border-2",
+  ]}
   onclick={showCellContent}
 >
   {#if status === "clicked"}
-    {content}
+    {#if content === "empty"}
+      {bombsAround}
+    {:else}
+      {content}
+    {/if}
   {/if}
 </button>
