@@ -3,3 +3,5 @@ export type Cell = {
   status: "initial" | "clicked" | "flagged";
   bombsAround: number;
 };
+
+export type Board = Cell[][];
