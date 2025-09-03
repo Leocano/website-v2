@@ -66,11 +66,7 @@
 
 <button
   type="button"
-  class={[
-    "h-16",
-    content === "mine" ? "bg-red-200" : "bg-blue-200",
-    "border-2",
-  ]}
+  class={[content === "mine" ? "bg-red-200" : "bg-blue-200", "border-2"]}
   onclick={handleCellClick}
   oncontextmenu={flagCell}
 >
