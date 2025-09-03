@@ -1,7 +1,7 @@
 import { BOARD_SIZE, MINE_AMOUNT } from "../config";
 import type { Cell } from "../types";
 
-export const setup = (): Cell[][] => {
+const setup = (): Cell[][] => {
   const board = Array.from(Array(BOARD_SIZE[0]), () =>
     Array.from(
       Array(BOARD_SIZE[1]),
@@ -24,13 +24,13 @@ export const setup = (): Cell[][] => {
     [-1, -1], // up-left
   ];
 
-  const fillBombCount = (row: number, col: number) => {
+  function fillBombCount(row: number, col: number) {
     if (row < 0 || row >= BOARD_SIZE[0] || col < 0 || col >= BOARD_SIZE[1]) {
       return;
     }
 
     board[row][col].bombsAround++;
-  };
+  }
 
   for (let i = 0; i < MINE_AMOUNT; i++) {
     const randomRow = Math.floor(Math.random() * BOARD_SIZE[0]);
