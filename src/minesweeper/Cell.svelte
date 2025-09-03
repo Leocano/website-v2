@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Cell } from "./types";
   import { DIRECTIONS } from "./constants";
-  import { boardState } from "./board/boardState.svelte";
+  import { boardState, flagCell } from "./board/boardState.svelte";
 
   type Props = Cell & {
     row: number;
@@ -45,14 +45,9 @@
     floodFill(row, col);
   }
 
-  function flagCell(e: Event) {
+  function handleContextMenu(e: Event) {
     e.preventDefault();
-
-    if (status !== "initial") {
-      return;
-    }
-
-    boardState[row][col].status = "flagged";
+    flagCell(row, col);
   }
 
   const { content, status, row, col, bombsAround }: Props = $props();
@@ -62,7 +57,7 @@
   type="button"
   class={[content === "mine" ? "bg-red-200" : "bg-blue-200", "border-2"]}
   onclick={handleCellClick}
-  oncontextmenu={flagCell}
+  oncontextmenu={handleContextMenu}
 >
   {#if status === "flagged"}
     {status}
