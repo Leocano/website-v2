@@ -31,23 +31,38 @@
     const cell = boardState[row][col];
 
     if (cell.status === "clicked") return;
+    if (cell.status === "flagged") return;
 
     boardState[row][col].status = "clicked";
 
     if (cell.bombsAround > 0) return;
 
-    for (const [dr, dc] of directions) {
-      floodFill(row + dr, col + dc);
+    for (const [rowOffset, colOffset] of directions) {
+      floodFill(row + rowOffset, col + colOffset);
     }
   }
 
   function handleCellClick() {
+    if (status === "flagged") {
+      return;
+    }
+
     if (content === "mine") {
       alert("PERDEU");
       return;
     }
 
     floodFill(row, col);
+  }
+
+  function flagCell(e: Event) {
+    e.preventDefault();
+
+    if (status !== "initial") {
+      return;
+    }
+
+    boardState[row][col].status = "flagged";
   }
 
   const { content, status, row, col, bombsAround }: Props = $props();
@@ -62,8 +77,11 @@
     "border-2",
   ]}
   onclick={handleCellClick}
+  oncontextmenu={flagCell}
 >
-  {#if status === "clicked"}
+  {#if status === "flagged"}
+    {status}
+  {:else if status === "clicked"}
     {#if content === "empty"}
       {bombsAround}
     {:else}
