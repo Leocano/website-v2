@@ -25,7 +25,7 @@ const setup = (): Cell[][] => {
   ];
 
   function fillBombCount(row: number, col: number) {
-    if (row < 0 || row >= BOARD_SIZE[0] || col < 0 || col >= BOARD_SIZE[1]) {
+    if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
       return;
     }
 
