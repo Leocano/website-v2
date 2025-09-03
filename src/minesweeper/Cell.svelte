@@ -1,18 +1,12 @@
 <script lang="ts">
   import type { Cell } from "./types";
+  import { DIRECTIONS } from "./constants";
   import { boardState } from "./board/boardState.svelte";
 
   type Props = Cell & {
     row: number;
     col: number;
   };
-
-  const directions = [
-    [0, 1], // right
-    [0, -1], // left
-    [1, 0], // down
-    [-1, 0], // up
-  ];
 
   function floodFill(row: number, col: number) {
     if (
@@ -33,7 +27,7 @@
 
     if (cell.bombsAround > 0) return;
 
-    for (const [rowOffset, colOffset] of directions) {
+    for (const [rowOffset, colOffset] of DIRECTIONS) {
       floodFill(row + rowOffset, col + colOffset);
     }
   }

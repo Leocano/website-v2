@@ -1,10 +1,10 @@
-import { BOARD_SIZE, MINE_AMOUNT } from "../config";
+import { BOARD_SIZE, MINE_AMOUNT, DIRECTIONS } from "../constants";
 import type { Cell } from "../types";
 
 const setup = (): Cell[][] => {
-  const board = Array.from(Array(BOARD_SIZE[0]), () =>
+  const board = Array.from(Array(BOARD_SIZE.ROWS), () =>
     Array.from(
-      Array(BOARD_SIZE[1]),
+      Array(BOARD_SIZE.COLS),
       (): Cell => ({
         content: "empty",
         status: "initial",
@@ -12,13 +12,6 @@ const setup = (): Cell[][] => {
       }),
     ),
   );
-
-  const directions = [
-    [0, 1], // right
-    [0, -1], // left
-    [1, 0], // down
-    [-1, 0], // up
-  ];
 
   function fillBombCount(row: number, col: number) {
     if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
@@ -29,8 +22,8 @@ const setup = (): Cell[][] => {
   }
 
   for (let i = 0; i < MINE_AMOUNT; i++) {
-    const randomRow = Math.floor(Math.random() * BOARD_SIZE[0]);
-    const randomCol = Math.floor(Math.random() * BOARD_SIZE[1]);
+    const randomRow = Math.floor(Math.random() * BOARD_SIZE.ROWS);
+    const randomCol = Math.floor(Math.random() * BOARD_SIZE.COLS);
     const cell = board[randomRow][randomCol];
 
     if (cell.content === "mine") {
@@ -40,7 +33,7 @@ const setup = (): Cell[][] => {
 
     cell.content = "mine";
 
-    for (const [rowOffset, colOffset] of directions) {
+    for (const [rowOffset, colOffset] of DIRECTIONS) {
       fillBombCount(randomRow + rowOffset, randomCol + colOffset);
     }
   }
