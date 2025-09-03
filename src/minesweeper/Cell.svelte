@@ -72,7 +72,6 @@
   type="button"
   class={[
     "h-16",
-    "w-16",
     content === "mine" ? "bg-red-200" : "bg-blue-200",
     "border-2",
   ]}
