@@ -1,5 +1,5 @@
 <script>
-  import Board from "./board/Board.svelte";
+  import Board from "./components/Board.svelte";
 </script>
 
 <Board />

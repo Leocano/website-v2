@@ -1,35 +1,24 @@
-import { DIRECTIONS } from "../constants";
 import { setup } from "./boardSetup";
-import { isOutOfBounds } from "./utils";
+import {
+  toggleFlag as toggleFlagEngine,
+  revealCells as revealCellsEngine,
+} from "./engine";
+import type { Board } from "../types";
 
-export const boardState = $state(setup());
+let boardState = $state<Board>(setup());
 
-export function flagCell(row: number, col: number) {
-  const cell = boardState[row][col];
+export function getBoardState() {
+  return boardState;
+}
 
-  if (cell.status !== "initial") {
-    return;
-  }
+export function restartGame() {
+  boardState = setup();
+}
 
-  boardState[row][col].status = "flagged";
+export function toggleFlag(row: number, col: number) {
+  boardState = toggleFlagEngine(boardState, row, col);
 }
 
 export function revealCells(row: number, col: number) {
-  if (isOutOfBounds(row, col)) {
-    return;
-  }
-
-  const cell = boardState[row][col];
-
-  if (cell.status === "clicked") return;
-  if (cell.status === "flagged") return;
-
-  boardState[row][col].status = "clicked";
-
-  if (cell.bombsAround > 0) return;
-  if (cell.content === "mine") return;
-
-  for (const [rowOffset, colOffset] of DIRECTIONS) {
-    revealCells(row + rowOffset, col + colOffset);
-  }
+  boardState = revealCellsEngine(boardState, row, col);
 }

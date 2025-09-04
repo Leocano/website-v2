@@ -1,15 +1,9 @@
 ---
 import Main from "../layouts/Main.astro";
-import Container from "../minesweeper/Container.astro";
 import MinesweeperGame from "../minesweeper/Minesweeper.svelte";
 ---
 
 <Main>
-  <Container>
-    <h1 class="pt-12 font-sans text-4xl font-bold text-orange-300">
-      Minesweeper
-    </h1>
-  </Container>
   <div class="mx-auto max-w-fit py-12">
     <MinesweeperGame client:load />
   </div>
