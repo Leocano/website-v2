@@ -1,18 +1,19 @@
-import { setup } from "./boardSetup";
+import { createEmptyBoard } from "./boardSetup";
 import {
   toggleFlag as toggleFlagEngine,
   revealCells as revealCellsEngine,
+  placeMines,
 } from "./engine";
-import type { Board } from "../types";
 
-let boardState = $state<Board>(setup());
+let boardState = $state(createEmptyBoard());
+let initialized = $state(false);
 
 export function getBoardState() {
   return boardState;
 }
 
 export function restartGame() {
-  boardState = setup();
+  boardState = createEmptyBoard();
 }
 
 export function toggleFlag(row: number, col: number) {
@@ -20,5 +21,10 @@ export function toggleFlag(row: number, col: number) {
 }
 
 export function revealCells(row: number, col: number) {
+  if (!initialized) {
+    boardState = placeMines(boardState, row, col);
+    initialized = true;
+  }
+
   boardState = revealCellsEngine(boardState, row, col);
 }
