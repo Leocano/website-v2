@@ -1,5 +1,6 @@
 import { BOARD_SIZE, MINE_AMOUNT, DIRECTIONS } from "../constants";
 import type { Cell, Board } from "../types";
+import { isOutOfBounds } from "./utils";
 
 const initialBoard = Array.from(Array(BOARD_SIZE.ROWS), () =>
   Array.from(
@@ -18,15 +19,6 @@ function incrementBombCount(row: number, col: number) {
   }
 
   initialBoard[row][col].bombsAround++;
-}
-
-function isOutOfBounds(row: number, col: number) {
-  return (
-    row < 0 ||
-    row >= initialBoard.length ||
-    col < 0 ||
-    col >= initialBoard[0].length
-  );
 }
 
 export function setup(): Board {
