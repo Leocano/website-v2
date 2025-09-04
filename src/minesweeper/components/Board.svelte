@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getBoardState } from "../board/boardState.svelte";
+  import { getBoardState } from "../board/boardStore.svelte";
   import Cell from "./Cell.svelte";
 
   const board = getBoardState();

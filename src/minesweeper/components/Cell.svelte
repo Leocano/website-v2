@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Cell } from "../types";
-  import { toggleFlag, revealCells } from "../board/boardState.svelte";
+  import { toggleFlag, revealCells } from "../board/boardStore.svelte";
 
   type Props = Cell & {
     row: number;
